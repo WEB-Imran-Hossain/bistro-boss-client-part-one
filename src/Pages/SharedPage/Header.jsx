@@ -24,8 +24,8 @@ const Header = () => {
                         </ul>
                     </div>
                     <div className="flex flex-col items-center">
-                        <p className="text-xl">BISTRO BOSS</p>
-                        <span>Restaurant</span>
+                        <p className="text-2xl font-Cinzel font-extrabold">BISTRO BOSS</p>
+                        <span className="font-Cinzel text-xl tracking-widest">Restaurant</span>
                     </div>
                 </div>
                 {/* desktop menu section */}
