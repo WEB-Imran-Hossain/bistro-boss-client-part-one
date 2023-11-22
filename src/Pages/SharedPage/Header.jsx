@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
     // nav menu options
@@ -51,7 +52,7 @@ const Header = () => {
                             {menu}
                         </ul>
                     </div>
-                    <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center justify-center">
                         <p className="text-2xl font-Cinzel font-extrabold">BISTRO BOSS</p>
                         <span className="font-Cinzel text-xl tracking-widest">
                             Restaurant
@@ -63,8 +64,15 @@ const Header = () => {
                     <ul className="menu menu-horizontal px-1">{menu}</ul>
                 </div>
                 {/* cart and login options */}
-                <div className="navbar-end">
-                    <a className="btn">Button</a>
+                <div className="navbar-end flex items-center gap-3 justify-center">
+                    <div>
+                        <Link to="/login">
+                            <p className="text-base">LOG IN</p>
+                        </Link>
+                    </div>
+                    <div>
+                        <FaUserCircle className="text-3xl" />
+                    </div>
                 </div>
             </div>
         </>
