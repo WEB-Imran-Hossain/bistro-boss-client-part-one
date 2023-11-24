@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useContext } from "react";
-import { useEffect} from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     loadCaptchaEnginge,
     LoadCanvasTemplate,
@@ -16,6 +16,10 @@ const Login = () => {
 
     // recived authinfo data
     const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -34,13 +38,14 @@ const Login = () => {
             const user = res.user;
             console.log(user);
             Swal.fire({
-                position: "top-end",
+                position: "top-center",
                 icon: "success",
                 title: "Sign In Sucessfully",
                 showConfirmButton: false,
                 timer: 1500
             });
         });
+        navigate(from, { replace: true });
     };
 
     const handleValidateCaptcha = (e) => {

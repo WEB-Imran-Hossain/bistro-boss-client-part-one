@@ -5,11 +5,11 @@ import { AuthContext } from "../../Providers/AuthProvider";
 
 const Header = () => {
     // user data recived
-    const { user, signOut } = useContext(AuthContext);
+    const { user, userSignOut } = useContext(AuthContext);
 
     // signout
     const handleSignOut = () => {
-        signOut()
+        userSignOut()
             .then(() => { })
             .catch((error) => console.log(error));
     };
@@ -82,10 +82,10 @@ const Header = () => {
                 <div className="navbar-end flex items-center gap-3 justify-center">
                     {user ? (
                         <>
+                        <span>{user?.displayName}</span>
                             <button
                                 onClick={handleSignOut}
-                                className="btn btn-active btn-ghost"
-                            >
+                                className="btn btn-active btn-ghost">
                                 SIGN OUT
                             </button>
                         </>
