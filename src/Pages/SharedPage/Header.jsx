@@ -1,7 +1,19 @@
 import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Header = () => {
+    // user data recived
+    const { user, signOut } = useContext(AuthContext);
+
+    // signout
+    const handleSignOut = () => {
+        signOut()
+            .then(() => { })
+            .catch((error) => console.log(error));
+    };
+
     // nav menu options
     const menu = (
         <>
@@ -19,6 +31,9 @@ const Header = () => {
             </li>
             <li>
                 <Link to="/order/salad">ORDER FOOD</Link>
+            </li>
+            <li>
+                <Link to="secret">SECRET</Link>
             </li>
         </>
     );
@@ -65,11 +80,24 @@ const Header = () => {
                 </div>
                 {/* cart and login options */}
                 <div className="navbar-end flex items-center gap-3 justify-center">
-                    <div>
-                        <Link to="/login">
-                            <p className="text-base">LOG IN</p>
-                        </Link>
-                    </div>
+                    {user ? (
+                        <>
+                            <button
+                                onClick={handleSignOut}
+                                className="btn btn-active btn-ghost"
+                            >
+                                SIGN OUT
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <div>
+                                <Link to="/login">
+                                    <p className="text-base">SIGN IN</p>
+                                </Link>
+                            </div>
+                        </>
+                    )}
                     <div>
                         <FaUserCircle className="text-3xl" />
                     </div>
