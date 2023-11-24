@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Header = () => {
     // user data recived
@@ -34,6 +35,14 @@ const Header = () => {
             </li>
             <li>
                 <Link to="secret">SECRET</Link>
+            </li>
+            <li>
+                <Link to="/">
+                    <button className="btn">
+                    <FaShoppingCart />
+                        <div className="badge badge-secondary">+0</div>
+                    </button>
+                </Link>
             </li>
         </>
     );
@@ -82,7 +91,7 @@ const Header = () => {
                 <div className="navbar-end flex items-center gap-3 justify-center">
                     {user ? (
                         <>
-                        <span>{user?.displayName}</span>
+                            <span>{user?.displayName}</span>
                             <button
                                 onClick={handleSignOut}
                                 className="btn btn-active btn-ghost">
