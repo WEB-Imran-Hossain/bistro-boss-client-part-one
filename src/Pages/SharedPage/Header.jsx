@@ -9,6 +9,7 @@ const Header = () => {
     // user data recived
     const { user, userSignOut } = useContext(AuthContext);
     const [cart] = useCart();
+    console.log("checking cart data", cart);
 
     // signout
     const handleSignOut = () => {

@@ -12,9 +12,26 @@ const FoodCard = ({ item }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const axiosSecure = useAxiosSequre();
-    const [,refetch]=useCart();
+    const [, refetch] = useCart();
 
     const handleAddToCart = () => {
+        if (!user) {
+            Swal.fire({
+                title: "You are not login",
+                text: "Please login to add to the cart?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, login!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //    send the user to the login page
+                    navigate("/login", { state: { from: location } });
+                }
+            });
+        }
+
         if (user && user.email) {
             // send cart item to the database
             // console.log(user.email, food);
@@ -41,20 +58,7 @@ const FoodCard = ({ item }) => {
                 }
             });
         }
-        Swal.fire({
-            title: "You are not login",
-            text: "Please login to add to the cart?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, login!",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                //    send the user to the login page
-                navigate("/login", { state: { from: location } });
-            }
-        });
+
     };
     return (
         <div className="card bg-base-100 shadow-xl">
