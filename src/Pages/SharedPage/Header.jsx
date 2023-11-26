@@ -3,10 +3,12 @@ import { FaUserCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../components/hooks/useCart";
 
 const Header = () => {
     // user data recived
     const { user, userSignOut } = useContext(AuthContext);
+    const [cart] = useCart();
 
     // signout
     const handleSignOut = () => {
@@ -39,8 +41,8 @@ const Header = () => {
             <li>
                 <Link to="/">
                     <button className="btn">
-                    <FaShoppingCart />
-                        <div className="badge badge-secondary">+0</div>
+                        <FaShoppingCart />
+                        <div className="badge badge-secondary">+{cart.length}</div>
                     </button>
                 </Link>
             </li>
