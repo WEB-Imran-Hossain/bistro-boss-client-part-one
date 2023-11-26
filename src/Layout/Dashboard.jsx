@@ -1,7 +1,9 @@
-import { FaCalendar, FaHome, FaList, FaShoppingCart, FaStar } from "react-icons/fa";
+import { FaCalendar, FaHome, FaList, FaSearch, FaShoppingCart, FaStar } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useCart from "../components/hooks/useCart";
 
 const Dashboard = () => {
+    const [cart] = useCart();
     return (
         <div className="flex">
             {/* dashboard sidebar */}
@@ -22,25 +24,38 @@ const Dashboard = () => {
                     <li>
                         <NavLink to="/dashboard/cart">
                             <FaShoppingCart></FaShoppingCart>
-                            My Cart
+                            My Cart ({cart.length})
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/review">
-                          <FaStar></FaStar>
+                            <FaStar></FaStar>
                             Ad a Review
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/bookings">
-                          <FaList></FaList>
+                            <FaList></FaList>
                             My Bookings
+                        </NavLink>
+                    </li>
+                    <div className="divider"></div>
+                    <li>
+                        <NavLink to="/">
+                            <FaHome></FaHome>
+                            Home
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/order/salad">
+                            <FaSearch></FaSearch>
+                            Menu
                         </NavLink>
                     </li>
                 </ul>
             </div>
             {/* dashboard content */}
-            <div className="flex-1">
+            <div className="flex-1 p-8">
                 <Outlet></Outlet>
             </div>
         </div>
